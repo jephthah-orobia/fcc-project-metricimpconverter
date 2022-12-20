@@ -80,7 +80,7 @@ suite('Unit Tests', function () {
         });
 
     suite('Units handling', function () {
-        let valid_units = ['gal', 'L', 'km', 'mi', 'lbs', 'kg'];
+        let valid_units = ['gal', 'L', 'km', 'mi', 'lbs', 'kg', 'KG', 'GaL', 'GAL', 'l', 'KM', 'Km', 'mi'];
 
         let return_units = {
             'gal': 'L', 'L': 'gal', 'km': 'mi', 'mi': 'km', 'lbs': 'kg', 'kg': 'lbs'
@@ -92,7 +92,7 @@ suite('Unit Tests', function () {
         test('should correctly read each valid input unit', function (done) {
             for (let unit of valid_units)
                 for (let num of valid_nums)
-                    assert.equal(getUnit(num + unit), unit, "test for " + num + unit);
+                    assert.equal(getUnit(num + unit), /^l$/i.test(unit) ? 'L' : unit.toLowerCase(), "test for " + num + unit);
             done();
         });
 
@@ -100,7 +100,7 @@ suite('Unit Tests', function () {
             expect(() => getUnit('3.2cm')).to.throw();
             expect(() => getUnit('3/2 in')).to.throw();
             expect(() => getUnit('3.2')).to.throw();
-            expect(() => getUnit('3.2/l')).to.throw();
+            expect(() => getUnit('3.2/liters')).to.throw();
             expect(() => getUnit('3.2 grams')).to.throw();
             done();
         });
