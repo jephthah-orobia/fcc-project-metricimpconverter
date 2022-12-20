@@ -1,31 +1,32 @@
 {
-	"name": "fcc-imperial-metric-converter-boilerplate",
-	"version": "1.0.0",
-	"description": "Metric / Imperial Unit Converter",
-	"main": "server.js",
-	"scripts": {
-		"start": "node server.js",
-		"test": "mocha ./tests/ --ui tdd",
-		"coverage": "nyc npm run test"
-	},
-	"dependencies": {
-		"body-parser": "^1.19.0",
-		"chai": "^4.2.0",
-		"chai-http": "^4.3.0",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.18.2",
-		"mocha": "^10.2.0",
-		"nyc": "^15.1.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/freeCodeCamp/boilerplate-project-metricimpconverter"
-	},
-	"keywords": [
-		"node",
-		"freeCodeCamp",
-		"express"
-	],
-	"license": "MIT"
+  "name": "fcc-imperial-metric-converter-boilerplate",
+  "version": "1.0.0",
+  "description": "Metric / Imperial Unit Converter",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha ./tests/ --ui tdd",
+    "coverage": "nyc npm run test"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.18.2",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jephthah-orobia/fcc-project-metricimpconverter"
+  },
+  "keywords": [
+    "node",
+    "freeCodeCamp",
+    "express"
+  ],
+  "author": "Jephthah M. Orobia <jephthah.orobia@gmail.com>",
+  "license": "MIT"
 }
