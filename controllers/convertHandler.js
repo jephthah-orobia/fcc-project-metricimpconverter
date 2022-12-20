@@ -2,16 +2,16 @@ function ConvertHandler() {
 
   /* Helpers */
   const number_pattern = /^\d+(\.?(?<=\.)\d+)?(\/?(?<=\/)\d+(\.?(?<=\.)\d+)?)?$/;
-  const unit_start = /[a-zA-Z]/;
-  const unit_pattern = /^gal|L|mi|km|lbs|kg$/;
-
+  const unit_start = /[a-z]/i;
+  const unit_pattern = /^(gal|L|mi|km|lbs|kg)$/i;
+  const liter_pattern = /^l$/i;
   const return_units = {
-    'gal': { return: 'L', 'spellout': 'gallons' },
-    'L': { return: 'gal', 'spellout': 'liters' },
-    'km': { return: 'mi', 'spellout': 'kilometers' },
-    'mi': { return: 'km', 'spellout': 'miles' },
-    'lbs': { return: 'kg', 'spellout': 'pounds' },
-    'kg': { return: 'lbs', 'spellout': 'kilograms' }
+    'gal': { toReturn: 'L', 'spellout': 'gallons' },
+    'l': { toReturn: 'gal', 'spellout': 'liters' },
+    'km': { toReturn: 'mi', 'spellout': 'kilometers' },
+    'mi': { toReturn: 'km', 'spellout': 'miles' },
+    'lbs': { toReturn: 'kg', 'spellout': 'pounds' },
+    'kg': { toReturn: 'lbs', 'spellout': 'kilograms' }
   };
 
   const round = (n, p) => Math.round(n * Math.pow(10, p)) / Math.pow(10, p);
@@ -35,17 +35,19 @@ function ConvertHandler() {
   this.getUnit = function (input) {
     const [num, unit] = split(input);
     if (unit_pattern.test(unit))
-      return unit;
+      return liter_pattern.test(unit) ? 'L' : unit.toLowerCase();
     else
       throw new Error("invalid unit");
   };
 
   this.getReturnUnit = function (initUnit) {
-    return return_units[initUnit].return;
+    let result = return_units[initUnit.toLowerCase()].toReturn;
+    return liter_pattern.test(result)
+      ? 'L' : result.toLowerCase();
   };
 
   this.spellOutUnit = function (unit) {
-    return return_units[unit].spellout;
+    return return_units[unit.toLowerCase()].spellout;
   };
 
   this.convert = function (initNum, initUnit) {
@@ -75,7 +77,8 @@ function ConvertHandler() {
       default:
         throw new Error("invalid unit");
     }
-    return round(result, 5);
+    result = Number.isInteger(result) ? parseInt(result) : round(result, 5);
+    return result;
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
