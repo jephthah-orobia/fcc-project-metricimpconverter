@@ -1,3 +1,7 @@
 # Metric-Imperial Converter
 
-This is the boilerplate for the Metric-Imperial Converter project. Instructions for building your project can be found at https://www.freecodecamp.org/learn/quality-assurance/quality-assurance-projects/metric-imperial-converter
+A sample project implemented by Jephthah M. Orobia for freeCodeCamp.org as a partial requirement for the "Quality Assurance Certification".
+
+## Demo
+
+https://fcc-project-metricimpconverter.jephthah-orobia.repl.co
